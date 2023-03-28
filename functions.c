@@ -8,6 +8,7 @@
  * @width: Width
  * @precision: Precision specification
  * @size: Size specifier
+ * Task done by Sekuo and Antwi.
  * Return: Number of chars printed
  */
 int print_char(va_list types, char buffer[],
