@@ -4,7 +4,7 @@
 
 /**
  * main - Entry point
- *
+ * Task done by Sekuo and Antwi
  * Return: Always 0
  */
 int main(void)
