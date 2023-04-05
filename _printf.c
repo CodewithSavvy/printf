@@ -1,48 +1,26 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
-
 /**
  * _printf - function my printf
- * @format: string with format to print
+ * @format: string whit format to print
  * Return: number of chars that print
  */
-
 int _printf(const char *format, ...)
 {
-    va_list args;
-    va_start(args, format);
+	va_list args;
+	int length = 0;
+	char buffer[1024];
+	int buff_idx = 0;
 
-    int count = 0;
-    char c;
+	if (format == NULL)
+		return (-1);
 
-    while ((c = *format++) != '\0') {
-        if (c == '%') {
-            c = *format++;
-            if (c == 'c') {
-                int arg = va_arg(args, int);
-                putchar(arg);
-                count++;
-            } else if (c == 's') {
-                char *arg = va_arg(args, char *);
-                while (*arg != '\0') {
-                    putchar(*arg++);
-                    count++;
-                }
-            } else if (c == '%') {
-                putchar('%');
-                count++;
-            } else {
-                
-            }
-        } else {
-            putchar(c);
-            count++;
-        }
-    }
-
-    va_end(args);
-
-    return count;
+	va_start(args, format);
+	length = _print_format(format, args, buffer, &buff_idx);
+	va_end(args);
+	if (buff_idx > 0)
+	{
+		write(1, buffer, buff_idx);
+		buff_idx = 0;
+	}
+	return (length);
 }
-
